@@ -1,0 +1,37 @@
+{
+  "name": "wharf",
+  "productName": "Wharf",
+  "version": "0.1.0",
+  "description": "Menubar app to view processes listening on local ports.",
+  "main": "src/index.ts",
+  "dependencies": {
+    "electron-compile": "^6.4.2",
+    "electron-devtools-installer": "^2.2.3",
+    "electron-json-storage": "^4.0.2",
+    "listening-processes": "^1.2.0",
+    "lodash": "^4.17.5",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/electron": "^1.6.10",
+    "@types/electron-devtools-installer": "^2.0.2",
+    "@types/jest": "^22.2.0",
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "@types/react-dropzone": "^4.2.0",
+    "@types/replace-ext": "0.0.27",
+    "@types/rimraf": "^2.0.2",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^5.1.1",
+    "electron-prebuilt-compile": "^1.8.2",
+    "jest": "^22.4.2",
+    "ts-jest": "^22.4.1",
+    "tslint": "^5.9.1",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.7.2"
+  }
+}
