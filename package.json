@@ -4,6 +4,14 @@
   "version": "0.1.0",
   "description": "Menubar app to view processes listening on local ports.",
   "main": "src/index.ts",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "lint": "tslint --project tsconfig.json --type-check --force --fix",
+    "publish": "electron-forge publish"
+  },
+  "license": "MIT",
   "dependencies": {
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.3",
