@@ -1,0 +1,249 @@
+/**
+ * Wharf Styles
+ */
+
+/* Elements */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* App */
+.app {
+  text-align: left;
+  display: block;
+  position: fixed;
+  background-color: #fff;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: scroll;
+  padding: 12px 0 18px;
+}
+
+.app--dark-theme {
+  background-color: #3e3e3e;
+}
+
+/* Links */
+.app a {
+  color: #666;
+  text-decoration: none;
+}
+
+.app--dark-theme a {
+  color: #aaa;
+}
+
+.app a:hover {
+  color: #888;
+  /*text-decoration: underline;*/
+}
+
+.app--dark-theme a:hover {
+  color: #ddd;
+}
+
+/* Info */
+.info {
+  position: fixed;
+  top: 0;
+  right: 0;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+  .app--dark-theme .info {
+    opacity: 0.5;
+  }
+
+  .info:hover {
+    opacity: 1;
+  }
+
+  .info__section {
+    float: left;
+    text-align: center;
+    cursor: crosshair;
+    color: #fff;
+    margin-left: 1px;
+    padding: 6px 18px;
+    display: inline-block;
+    background: rgba(0,0,0,0.5);
+  }
+
+    .info__section:hover {
+      cursor: pointer;
+    }
+
+    .info__section--logo {
+      border-bottom-left-radius: 6px;
+    }
+  
+    .info__section--logo:hover{
+      background-color: #ff7042;
+    }
+
+    .info__section--logo .version {
+      font-size: 10px;
+    }
+
+    .info__section--power-off:hover {
+      background-color: red;
+    }
+
+    .info__section--hide-app:hover {
+      background-color: #ccc;
+    }
+
+    
+
+/* List */
+.app__list {
+  color: black;
+}
+
+  .app--dark-theme .app__list {
+    color: white;
+  }
+
+/* Process */
+.process-list {
+  font-size: 24px;
+  width: 100%;
+  padding: 0 20px 0;
+}
+
+.process {
+  position: relative;
+  border-left: 3px solid #ff7042;
+  margin: 6px 18px 18px;
+  padding: 0 0 0 10px;
+}
+
+  .process--processing {
+    opacity: .1;
+    pointer-events: none;
+  }
+
+  .process__details {
+    margin: 0;
+  }
+
+  .process__label {
+    display: inline-block;
+    padding: 0 0 6px;
+    color: #000;
+    font-weight: bold;
+  }
+
+  .app--dark-theme .process__label {
+    color: #fff;
+  }
+
+  .process__detail {
+    border-radius: 3px;
+    display: inline-block;
+    padding: 0 6px 6px;
+    word-wrap: break-word;
+    user-select: all;
+  }
+
+  .process__details--inline {
+    display: inline-block;
+    margin-right: 6px;
+    margin-bottom: 2px;
+  }
+
+  .process__local-host {
+    text-decoration: none;
+  }
+
+  .process__port-number {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .app--dark-theme .process__port-number {
+    color: #fff;
+  }
+
+  .process__detail--kill {
+    text-decoration: none;
+    margin: 0 5px 0 0;
+    color: red;
+    padding: 0 5px;
+    line-height: 1.5em;
+    user-select: none;
+    cursor: pointer;
+    display: inline-block;
+  }
+    .process__detail--kill:hover {
+      color: white;
+      background-color: red;
+    }
+
+/* Dialog */
+.dialog {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /*top: 0;
+  left: -5px;
+  right: 0;
+  bottom: 0;*/
+  background: red;
+  opacity: 1;
+  display: flex;
+  padding: 10px 20px;
+}
+
+  .dialog__inner {
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+  }
+
+    .dialog__button {
+      padding: 6px 12px;
+      margin: 12px 0 6px;
+      display: inline-block;
+      cursor: pointer;
+    }
+      .dialog__button:hover {
+        text-decoration: underline;
+      }
+
+    .dialog__button--confirm {
+      background-color: #fff;
+      color: red;
+    }
+
+
+.process__invoking-command {
+  background-color: rgba(0,0,0,0.05);
+  border: 0px;
+  width: 100%;
+  display: block;
+  clear: both;
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: .8em;
+  user-select: all;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.app--dark-theme .process__invoking-command {
+  color: #fff;
+  background-color: rgba(255,255,255,0.05);
+}
+

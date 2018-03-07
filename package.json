@@ -1,45 +1,77 @@
 {
   "name": "wharf",
-  "productName": "Wharf",
+  "productName": "wharf",
   "version": "0.1.0",
-  "description": "Menubar app to view processes listening on local ports.",
+  "description": "My Electron application description",
   "main": "src/index.ts",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "lint": "tslint --project tsconfig.json --type-check --force --fix",
-    "publish": "electron-forge publish"
+    "publish": "electron-forge publish",
+    "lint": "tslint --project tsconfig.json --type-check --force"
   },
+  "keywords": [],
+  "author": "mark",
   "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "yarn",
+        "name": "Wharf",
+        "ignore": [
+          "docs"
+        ]
+      },
+      "electronWinstallerConfig": {
+        "name": "Wharf"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "markrabey",
+        "name": "wharf"
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "Wharf"
+      }
+    }
+  },
   "dependencies": {
+    "@types/electron-devtools-installer": "^2.0.2",
+    "@types/react": "^0.14.55",
+    "@types/react-dom": "^0.14.20",
+    "classnames": "^2.2.5",
     "electron-compile": "^6.4.2",
-    "electron-devtools-installer": "^2.2.3",
-    "electron-json-storage": "^4.0.2",
+    "electron-devtools-installer": "^2.1.0",
+    "electron-squirrel-startup": "^1.0.0",
     "listening-processes": "^1.2.0",
-    "lodash": "^4.17.5",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-hot-loader": "^4.0.0"
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "react-list": "^0.8.8",
+    "tslib": "^1.4.0"
   },
   "devDependencies": {
-    "@types/electron": "^1.6.10",
-    "@types/electron-devtools-installer": "^2.0.2",
-    "@types/jest": "^22.2.0",
-    "@types/react": "^16.0.40",
-    "@types/react-dom": "^16.0.4",
-    "@types/react-dropzone": "^4.2.0",
-    "@types/replace-ext": "0.0.27",
-    "@types/rimraf": "^2.0.2",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "electron-forge": "^5.1.1",
-    "electron-prebuilt-compile": "^1.8.2",
-    "jest": "^22.4.2",
-    "ts-jest": "^22.4.1",
-    "tslint": "^5.9.1",
-    "tslint-config-standard": "^7.0.0",
-    "typescript": "^2.7.2"
+    "electron-prebuilt-compile": "1.8.2",
+    "tslint": "^5.1.0",
+    "typescript": "~2.2.2"
   }
 }
