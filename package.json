@@ -30,6 +30,7 @@
       },
       "electronPackagerConfig": {
         "packageManager": "yarn",
+        "icon": "src/assets/system-icons/icon.icns",
         "name": "Wharf",
         "ignore": [
           "docs"
@@ -37,6 +38,9 @@
       },
       "electronWinstallerConfig": {
         "name": "Wharf"
+      },
+      "electronInstallerDMG": {
+        "icon": "src/assets/system-icons/icon.icns"
       },
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
