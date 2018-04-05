@@ -21,7 +21,7 @@ module.exports = (env, options) => {
   const config = {
     target: 'electron-renderer',
     entry: {
-      app: './src/app.tsx',
+      app: './src/renderer/app.tsx',
     },
     module: {
       rules: [
