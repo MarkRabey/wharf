@@ -5,77 +5,9 @@
   "description": "My Electron application description",
   "main": "src/index.ts",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "tslint --project tsconfig.json --type-check --force"
+    "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json"
   },
   "keywords": [],
   "author": "mark",
-  "license": "MIT",
-  "config": {
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
-      "electronPackagerConfig": {
-        "packageManager": "yarn",
-        "icon": "src/assets/system-icons/icon.icns",
-        "name": "Wharf",
-        "ignore": [
-          "docs"
-        ]
-      },
-      "electronWinstallerConfig": {
-        "name": "Wharf"
-      },
-      "electronInstallerDMG": {
-        "icon": "src/assets/system-icons/icon.icns"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": "markrabey",
-        "name": "wharf"
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "Wharf"
-      }
-    }
-  },
-  "dependencies": {
-    "@types/electron-devtools-installer": "^2.0.2",
-    "@types/react": "^0.14.55",
-    "@types/react-dom": "^0.14.20",
-    "classnames": "^2.2.5",
-    "electron-compile": "^6.4.2",
-    "electron-devtools-installer": "^2.1.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "listening-processes": "^1.2.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-hot-loader": "^3.0.0-beta.6",
-    "react-list": "^0.8.8",
-    "tslib": "^1.4.0"
-  },
-  "devDependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "electron-forge": "^5.1.1",
-    "electron-prebuilt-compile": "1.8.2",
-    "tslint": "^5.1.0",
-    "typescript": "~2.2.2"
-  }
+  "license": "MIT"
 }
