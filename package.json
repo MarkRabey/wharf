@@ -2,9 +2,12 @@
   "name": "wharf",
   "productName": "wharf",
   "version": "0.1.0",
-  "description": "My Electron application description",
-  "main": "src/index.ts",
+  "description": "Manage processes running on localhost.",
+  "main": "./dist/main.js",
   "scripts": {
+    "start-renderer-dev": "webpack-dev-server --config webpack.renderer.config.js --hot --progress --mode development",
+    "start-main-dev": "webpack --config webpack.main.config.js --mode development && electron ./dist/main.js",
+    "start-dev": "cross-env START_HOT=1 npm run start-renderer-dev",
     "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json"
   },
   "keywords": [],
