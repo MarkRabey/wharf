@@ -11,7 +11,7 @@ export class Tray {
     this.tray.setToolTip('Wharf');
 
     const contextMenu = Electron.Menu.buildFromTemplate([
-      { label: 'Quit', click: () => app.quit() }
+      { label: 'Quit', click: () => Electron.app.quit() }
     ]);
 
     this.tray.on('right-click', () => this.tray.popUpContextMenu(contextMenu));
