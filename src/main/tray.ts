@@ -20,9 +20,9 @@ export class WharfTray extends Tray {
 
   constructor(icon: any) {
     super(icon);
+    this.setTitle('Wharf');
     this.setToolTip('Wharf');
     
-    this.createMenu();
     this.on('click', this.createMenu);
   }
 
@@ -31,7 +31,7 @@ export class WharfTray extends Tray {
     this.menu = undefined;
     this.menu = new WharfMenu(this.processes);
 
-    this.setContextMenu(this.menu);
+    this.popUpContextMenu(this.menu);
   }
 
   getProcesses(): any[] {
