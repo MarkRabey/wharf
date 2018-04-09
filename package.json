@@ -5,9 +5,7 @@
   "description": "Manage processes running on localhost.",
   "main": "./dist/main.js",
   "scripts": {
-    "start-renderer-dev": "webpack-dev-server --config webpack.renderer.config.js --hot --progress --mode development",
-    "start-main-dev": "webpack --config webpack.main.config.js --mode development && electron ./dist/main.js",
-    "start-dev": "cross-env START_HOT=1 npm run start-renderer-dev",
+    "start": "webpack --config webpack.main.config.js --mode development && electron ./dist/main.js",
     "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json --type-check"
   },
   "keywords": [],
