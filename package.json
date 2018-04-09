@@ -62,7 +62,8 @@
     "productName": "Wharf",
     "appId": "com.markrabey.wharf",
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "icon": "src/assets/system-icon/icon.icns"
     },
     "directories": {
       "output": "release"
