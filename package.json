@@ -5,6 +5,8 @@
   "description": "Manage processes running on localhost.",
   "main": "./dist/main.js",
   "scripts": {
+    "clean": "rm -rf dist",
+    "prestart": "npm run clean",
     "start": "webpack --config webpack.main.config.js --mode development && electron ./dist/main.js",
     "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json --type-check"
   },
