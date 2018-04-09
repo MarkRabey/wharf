@@ -1,81 +1,76 @@
 {
   "name": "wharf",
-  "productName": "wharf",
-  "version": "0.1.0",
-  "description": "My Electron application description",
-  "main": "src/index.ts",
+  "productName": "Wharf",
+  "version": "0.2.0",
+  "description": "Manage processes running on localhost.",
+  "main": "./dist/main.js",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "tslint --project tsconfig.json --type-check --force"
+    "clean": "rm -rf dist && rm -rf release",
+    "prebuild": "npm run clean",
+    "build": "webpack --config webpack.main.config.js --mode production",
+    "prestart": "npm run clean",
+    "start": "webpack --config webpack.main.config.js --mode development && electron ./dist/main.js",
+    "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json",
+    "precommit": "lint-staged",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder"
   },
   "keywords": [],
-  "author": "mark",
-  "license": "MIT",
-  "config": {
-    "forge": {
-      "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
-      },
-      "electronPackagerConfig": {
-        "packageManager": "yarn",
-        "icon": "src/assets/system-icons/icon.icns",
-        "name": "Wharf",
-        "ignore": [
-          "docs"
-        ]
-      },
-      "electronWinstallerConfig": {
-        "name": "Wharf"
-      },
-      "electronInstallerDMG": {
-        "icon": "src/assets/system-icons/icon.icns"
-      },
-      "electronInstallerDebian": {},
-      "electronInstallerRedhat": {},
-      "github_repository": {
-        "owner": "markrabey",
-        "name": "wharf"
-      },
-      "windowsStoreConfig": {
-        "packageName": "",
-        "name": "Wharf"
-      }
-    }
+  "author": "Mark Rabey <mark@markrabey.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:MarkRabey/wharf.git"
   },
+  "bugs": {
+    "url": "https://github.com/MarkRabey/wharf/issues"
+  },
+  "license": "MIT",
   "dependencies": {
-    "@types/electron-devtools-installer": "^2.0.2",
-    "@types/react": "^0.14.55",
-    "@types/react-dom": "^0.14.20",
-    "classnames": "^2.2.5",
-    "electron-compile": "^6.4.2",
-    "electron-devtools-installer": "^2.1.0",
-    "electron-squirrel-startup": "^1.0.0",
     "listening-processes": "^1.2.0",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "react-hot-loader": "^3.0.0-beta.6",
-    "react-list": "^0.8.8",
-    "tslib": "^1.4.0"
+    "lodash": "^4.17.5"
   },
   "devDependencies": {
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "electron-forge": "^5.1.1",
-    "electron-prebuilt-compile": "1.8.2",
-    "tslint": "^5.1.0",
-    "typescript": "~2.2.2"
+    "@types/lodash": "^4.14.106",
+    "@types/webdriverio": "^4.10.1",
+    "@types/webpack-env": "^1.13.5",
+    "babel-loader": "^7.1.4",
+    "copy-webpack-plugin": "^4.5.1",
+    "electron": "^1.8.4",
+    "electron-builder": "^20.8.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.11.1",
+    "spectron": "^3.8.0",
+    "ts-loader": "^4.1.0",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-merge": "^4.1.2"
+  },
+  "lint-staged": {
+    "{src,test,mocks}/**/*.{js,ts,tsx,json,css,scss,md}": [
+      "prettier --config ./.prettierrc --write",
+      "git add"
+    ],
+    "{src,test,mocks}/**/*.{js,ts,tsx}": [
+      "tslint --project ./tsconfig.json --fix",
+      "git add"
+    ]
+  },
+  "build": {
+    "productName": "Wharf",
+    "appId": "com.markrabey.wharf",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "src/assets/system-icon/icon.icns"
+    },
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/",
+      "package.json"
+    ]
   }
 }
