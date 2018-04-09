@@ -22,14 +22,14 @@ module.exports = (env, options) => {
   const config = {
     target: 'electron-renderer',
     entry: {
-      app: './src/renderer/app.tsx',
+      app: './src/renderer/main.tsx',
     },
     module: {
       rules: [
         {
           test: /\.tsx?$/,
-          include: [path.resolve(__dirname, 'src')],
-          exclude: [path.resolve(__dirname, 'src', 'main.ts')],
+          include: [path.resolve(__dirname, 'src', 'renderer')],
+          exclude: [path.resolve(__dirname, 'src', 'main', '**')],
           loaders: tsxLoaders,
         },
         {
@@ -61,7 +61,10 @@ module.exports = (env, options) => {
       ]
     },
     plugins: [
-      new HtmlWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        title: 'Wharf',
+        template: 'src/renderer/index.html',
+      }),
       new webpack.NamedModulesPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')

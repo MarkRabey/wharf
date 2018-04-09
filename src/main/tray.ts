@@ -1,31 +1,53 @@
-import * as Electron from 'electron';
+import {
+  Tray,
+  Menu,
+  app,
+  nativeImage,
+  shell,
+  dialog } from 'electron';
 
-export class Tray {
-  
-  constructor() {
-    const icon = Electron.nativeImage.createEmpty();
+import * as processes from 'listening-processes';
+import * as _ from 'lodash';
 
-    this.tray = new Electron.Tray(icon);
+import { WharfMenu } from './wharf-menu';
 
-    this.tray.on('click', () => (this.clickHandler || (() => {}))());
-    this.tray.setToolTip('Wharf');
+export class WharfTray extends Tray {
+  label: string = '';
+  processes: any[] = [];
+  menu: WharfMenu | undefined = undefined;
+  timeout: any;
+  clickHandler: Function = () => {};
 
-    const contextMenu = Electron.Menu.buildFromTemplate([
-      { label: 'Quit', click: () => Electron.app.quit() }
-    ]);
-
-    this.tray.on('right-click', () => this.tray.popUpContextMenu(contextMenu));
+  constructor(icon: any) {
+    super(icon);
+    this.setToolTip('Wharf');
+    
+    this.createMenu();
+    this.on('click', this.createMenu);
   }
 
-  getBounds() {
-    return this.tray.getBounds();
+  createMenu() {
+    this.processes = this.getProcesses();
+    this.menu = undefined;
+    this.menu = new WharfMenu(this.processes);
+
+    this.setContextMenu(this.menu);
   }
 
-  getLabel() {
-    return this.label;
-  }
+  getProcesses(): any[] {
+    const processesArray = _.map(processes(), (processes: any, command: any) => {
+      return {
+        processes,
+        command,
+      }
+    });
 
-  onClick(fn) {
-    this.clickHandler = fn;
+    processesArray.sort((a: any, b: any) => {
+      let commandA = a.command.toLowerCase();
+      let commandB = b.command.toLowerCase();
+      return (commandA < commandB ? -1 : commandA > commandB ? 1 : 0);
+    });
+
+    return processesArray;
   }
 }
