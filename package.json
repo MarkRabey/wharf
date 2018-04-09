@@ -1,14 +1,18 @@
 {
   "name": "wharf",
-  "productName": "wharf",
   "version": "0.1.0",
   "description": "Manage processes running on localhost.",
   "main": "./dist/main.js",
   "scripts": {
     "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "webpack --config webpack.main.config.js --mode production",
     "prestart": "npm run clean",
     "start": "webpack --config webpack.main.config.js --mode development && electron ./dist/main.js",
-    "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json --type-check"
+    "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json --type-check",
+    "precommit": "lint-staged",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder"
   },
   "keywords": [],
   "author": "Mark Rabey <mark@markrabey.com>",
@@ -42,5 +46,22 @@
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
     "webpack-merge": "^4.1.2"
+  },
+  "lint-staged": {
+    "{src,test,mocks}/**/*.{js,ts,tsx,json,css,scss,md}": [
+      "prettier --config ./.prettierrc --write",
+      "git add"
+    ],
+    "{src,test,mocks}/**/*.{js,ts,tsx}": [
+      "tslint --project ./tsconfig.json --fix",
+      "git add"
+    ]
+  },
+  "build": {
+    "productName": "Wharf",
+    "appId": "com.markrabey.wharf",
+    "mac": {
+      "category": "public.app-category.utilities"
+    }
   }
 }
