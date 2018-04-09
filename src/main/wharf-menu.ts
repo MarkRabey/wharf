@@ -7,15 +7,15 @@ export class WharfMenu extends Menu {
   constructor(processes: any) {
     super();
     this.processes = processes;
-    
+
     this.addCommands();
     this.addAppItems();
   }
 
   addCommands() {
-    this.processes.forEach((process) => {
+    this.processes.forEach(process => {
       const itemConfig: any = {
-        label: process.command,
+        label: process.command
       };
 
       if (process.processes.length > 0) {
@@ -29,42 +29,45 @@ export class WharfMenu extends Menu {
   createSubmenu(process: any) {
     const submenu: any[] = [];
     const pid = process.processes[0].pid;
-    
+
     process.processes.forEach((process: any) => {
-      const url = `http://localhost:${ process.port }`;
+      const url = `http://localhost:${process.port}`;
       submenu.push({
         label: url,
-        click: () => shell.openExternal(url),
+        click: () => shell.openExternal(url)
       });
     });
 
     submenu.push(
       { type: 'separator' },
       {
-        label: `Kill Process (${ pid })`,
-        click: () => this.handleProcessKill(pid),
-      },
+        label: `Kill Process (${pid})`,
+        click: () => this.handleProcessKill(pid)
+      }
     );
 
     return submenu;
   }
 
   handleProcessKill(pid: any) {
-    dialog.showMessageBox({
-      type: 'question',
-      title: 'Are you sure?',
-      message: `Kill process ${ pid }?`,
-      buttons: ['Ok', 'Cancel'],
-    }, (selectedIndex: number) => {
-      if (selectedIndex === 0) {
-        const result = processes.kill(pid);
-        if (result.success.includes(pid)) {
-          console.log(`Killed ${ pid }`);
-        } else {
-          alert(`Could not kill process ${ pid }`);
+    dialog.showMessageBox(
+      {
+        type: 'question',
+        title: 'Are you sure?',
+        message: `Kill process ${pid}?`,
+        buttons: ['Ok', 'Cancel']
+      },
+      (selectedIndex: number) => {
+        if (selectedIndex === 0) {
+          const result = processes.kill(pid);
+          if (result.success.includes(pid)) {
+            console.log(`Killed ${pid}`);
+          } else {
+            alert(`Could not kill process ${pid}`);
+          }
         }
       }
-    });
+    );
   }
 
   addAppItems() {

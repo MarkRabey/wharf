@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.main.config.js --mode production",
     "prestart": "npm run clean",
     "start": "webpack --config webpack.main.config.js --mode development && electron ./dist/main.js",
-    "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json --type-check",
+    "lint": "tslint '{src,test,mocks}/**/*.{ts,tsx}' --project ./tsconfig.json",
     "precommit": "lint-staged",
     "pack": "npm run build && electron-builder --dir",
     "dist": "npm run build && electron-builder"

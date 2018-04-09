@@ -1,10 +1,4 @@
-import {
-  Tray,
-  Menu,
-  app,
-  nativeImage,
-  shell,
-  dialog } from 'electron';
+import { Tray, Menu, app, nativeImage, shell, dialog } from 'electron';
 
 import * as processes from 'listening-processes';
 import * as _ from 'lodash';
@@ -16,13 +10,12 @@ export class WharfTray extends Tray {
   processes: any[] = [];
   menu: WharfMenu | undefined = undefined;
   timeout: any;
-  clickHandler: Function = () => {};
 
   constructor(icon: any) {
     super(icon);
     this.setTitle('Wharf');
     this.setToolTip('Wharf');
-    
+
     this.on('click', this.createMenu);
   }
 
@@ -38,14 +31,14 @@ export class WharfTray extends Tray {
     const processesArray = _.map(processes(), (processes: any, command: any) => {
       return {
         processes,
-        command,
-      }
+        command
+      };
     });
 
     processesArray.sort((a: any, b: any) => {
       let commandA = a.command.toLowerCase();
       let commandB = b.command.toLowerCase();
-      return (commandA < commandB ? -1 : commandA > commandB ? 1 : 0);
+      return commandA < commandB ? -1 : commandA > commandB ? 1 : 0;
     });
 
     return processesArray;
