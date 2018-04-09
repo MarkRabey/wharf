@@ -1,7 +1,7 @@
 {
   "name": "wharf",
   "productName": "Wharf",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Manage processes running on localhost.",
   "main": "./dist/main.js",
   "scripts": {

@@ -13,7 +13,6 @@ export class WharfTray extends Tray {
 
   constructor(icon: any) {
     super(icon);
-    this.setTitle('Wharf');
     this.setToolTip('Wharf');
 
     this.on('click', this.createMenu);
