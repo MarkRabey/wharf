@@ -1,4 +1,5 @@
-import {app, nativeImage } from 'electron';
+import { app, nativeImage } from 'electron';
+import * as path from 'path';
 import { WharfTray } from './tray';
 
 export class App {
@@ -10,7 +11,8 @@ export class App {
   constructor() {
     app.dock.hide();
 
-    const icon = nativeImage.createEmpty();
-    this.tray = new WharfTray(icon);
+    // const icon = nativeImage.createEmpty();
+    // console.log('../assets/icons/icon.png');
+    this.tray = new WharfTray(path.join(__dirname, `/assets/icons/icon.png`));
   }
 }

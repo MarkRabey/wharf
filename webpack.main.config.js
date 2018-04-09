@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const baseConfig = require('./webpack.base.config');
 
@@ -14,12 +15,15 @@ module.exports = merge.smart(baseConfig, {
       {
         test: /\.tsx?$/,
         loader: 'ts-loader'
-      }
+      },
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-    })
+    }),
+    new CopyWebpackPlugin([
+      { from: './src/assets', to: './assets' }
+    ]),
   ]
 });
